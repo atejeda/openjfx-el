@@ -5,7 +5,7 @@ FROM centos:centos7
 
 RUN yum group install -y "Development Tools"
 RUN yum install -y \
-        rpmdevtools wget make \
+        rpmdevtools wget make vim \
         java-1.8.0-openjdk java-1.8.0-openjdk-devel mercurial bison \
         flex gperf ksh pkgconfig libpng12-devel libjpeg-devel \
         libxml2-devel libxslt-devel systemd-devel glib2-devel \

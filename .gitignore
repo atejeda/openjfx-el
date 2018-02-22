@@ -2,6 +2,7 @@
 **/RPM*
 **/RPMS**
 **/rpmbuild*
+**/*.class
 
 # directories
 cmake-3.11.0-rc1-Linux-x86_64

@@ -32,7 +32,7 @@ chmod -R +x %{_builddir}
 #%setup -q -T
 
 %define gradle_properties gradle.properties
-echo "COMPILE_WEBKIT = true" >> %{gradle_properties}
+echo "COMPILE_WEBKIT = false" >> %{gradle_properties}
 # We cannot compile media for now, as the code relies on FFmpeg, whose distributions
 echo "COMPILE_MEDIA = false" >> %{gradle_properties}
 echo "BUILD_JAVADOC = true" >> %{gradle_properties}
@@ -41,7 +41,7 @@ echo "libav" = "true" >> %{gradle_properties}
 
 %build
 %define qmake_symlink %{_builddir}/bin/qmake
-export JAVA_HOME="/usr/lib/jvm/%{openjdk8_version}"
+#export JAVA_HOME="/usr/lib/jvm/%{openjdk8_version}"
 export CXXFLAGS="$CXXFLAGS -fPIC"
 export CFLAGS="$CFLAGS -fPIC"
 mkdir -p %{_builddir}/bin
