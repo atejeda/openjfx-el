@@ -1,4 +1,4 @@
-# https://github.com/atejeda/openjfx-el7
+# https://github.com/atejeda/openjfx-el
 
 Name:    java-1.8.0-openjfx
 Version: 8u161_b12
@@ -11,11 +11,18 @@ URL:     https://wiki.openjdk.java.net/display/OpenJFX/Main
 %global openjfx_version 8u161-b12
 Source0: http://hg.openjdk.java.net/openjfx/8u/rt/archive/%{openjfx_version}.tar.gz
 
-BuildRequires: java-1.8.0-openjdk java-1.8.0-openjdk-devel mercurial bison flex gperf ksh pkgconfig libpng12-devel libjpeg-devel libxml2-devel libxslt-devel systemd-devel glib2-devel gtk2-devel libXtst-devel pango-devel freetype-devel alsa-lib-devel glib2-devel qt-devel gstreamer-devel perl perl-version perl-Digest perl-Digest-MD5 ruby gcc-c++
+BuildRequires: java-1.8.0-openjdk java-1.8.0-openjdk-devel mercurial bison flex gperf ksh pkgconfig 
+BuildRequires: libpng12-devel libjpeg-devel libxml2-devel libxslt-devel systemd-devel glib2-devel 
+BuildRequires: gtk2-devel libXtst-devel pango-devel freetype-devel alsa-lib-devel glib2-devel 
+BuildRequires: qt-devel gstreamer-devel perl perl-version perl-Digest perl-Digest-MD5 ruby gcc-c++
+BuildRequires: perl-JSON-PP
 Requires:      java-1.8.0-openjdk
 
 %description
-OpenJFX is an open source, next generation client application platform for desktop and embedded systems based on JavaSE. It is a collaborative effort by many individuals and companies with the goal of producing a modern, efficient, and fully featured toolkit for developing rich client applications. This is the open source project where we develop JavaFX.
+OpenJFX is an open source, next generation client application platform for desktop and embedded 
+systems based on JavaSE. It is a collaborative effort by many individuals and companies with the 
+goal of producing a modern, efficient, and fully featured toolkit for developing rich client 
+applications.
 
 %global openjdk8_version %(rpm -q java-1.8.0-openjdk)
 %global openjdk8_install_dir %{buildroot}/usr/lib/jvm/%{openjdk8_version}
@@ -44,6 +51,8 @@ export CXXFLAGS="$CXXFLAGS -fPIC"
 export CFLAGS="$CFLAGS -fPIC"
 mkdir -p %{_builddir}/bin
 [[ -f %{qmake_symlink} ]] || ln -s /usr/bin/qmake-qt4 %{qmake_symlink}
+# add test targets
+gradle
 
 %install
 %global sdkdir build/sdk
