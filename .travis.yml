@@ -5,5 +5,5 @@ services:
 
 before_install:
 - docker pull atejeda/openjfx-el
-- docker run --rm -w /root/workspace -v $PWD:/root/workspace atejeda/openjfx-el scl enable devtoolset-3 'make deps all'
+- docker run --rm -w /root/workspace -v $PWD:/root/workspace atejeda/openjfx-el scl enable devtoolset-3 'make info deps all'
 - docker ps -a
