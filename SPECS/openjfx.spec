@@ -50,7 +50,6 @@ export CXXFLAGS="$CXXFLAGS -fPIC"
 export CFLAGS="$CFLAGS -fPIC"
 gradle
 gradle :base:test
-gradle zips
 
 %install
 %global sdkdir build/sdk

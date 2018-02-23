@@ -24,6 +24,9 @@ info:
 	# cmake
 	@readlink -f `which cmake`
 	@cmake --version && echo
+	# ant
+	@readlink -f `which ant`
+	@ant -version && echo
 	# java
 	@readlink -f `which java`
 	@java -version && echo
