@@ -1,5 +1,5 @@
-# https://hub.docker.com/r/atejeda/openjfx-el7
-# https://github.com/atejeda/openjfx-el7
+# https://hub.docker.com/r/atejeda/openjfx-el
+# https://github.com/atejeda/openjfx-el
 
 FROM centos:centos7
 
