@@ -1,5 +1,5 @@
-# https://hub.docker.com/r/atejeda/openjfx-rpm/
-# https://github.com/atejeda/openjfx-rpm
+# https://hub.docker.com/r/atejeda/openjfx-el7
+# https://github.com/atejeda/openjfx-el7
 
 FROM centos:centos7
 
@@ -17,4 +17,7 @@ RUN yum install -y \
 RUN yum install -y devtoolset-3-gcc devtoolset-3-*c++*
 RUN yum install -y http://ftp.linux.ncsu.edu/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
 RUN yum install -y cmake3
-
+RUN wget http://services.gradle.org/distributions/gradle-1.8-bin.zip && \
+        unzip gradle-1.8-bin.zip -d /opt && \
+        ln -s /opt/gradle-1.8/bin/gradle /usr/bin/ && \
+        rm -f gradle-1.8-bin.zip

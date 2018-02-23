@@ -2,7 +2,7 @@
 
 RPMBUILD_ROOT=/root/rpmbuild
 
-all:
+all: info
 	chown root.root -R $(RPMBUILD_ROOT)
 	mkdir -p $(RPMBUILD_ROOT)/SOURCES/
 	rpmbuild -ba SPECS/openjfx.spec
