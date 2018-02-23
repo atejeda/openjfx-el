@@ -1,21 +1,28 @@
-# https://github.com/atejeda/openjfx-rpm
+# https://github.com/atejeda/openjfx-el
 
-RPMBUILD_ROOT=/root/rpmbuild
+RPMBUILD_ROOT=$(shell pwd)/rpmbuild
 
-all: info
+all: setup info
+	rpmbuild --define "_topdir $(RPMBUILD_ROOT)" -ba SPECS/openjfx.spec
+
+setup:
+	mkdir -p $(RPMBUILD_ROOT)
 	chown root.root -R $(RPMBUILD_ROOT)
-	mkdir -p $(RPMBUILD_ROOT)/SOURCES/
-	rpmbuild -ba SPECS/openjfx.spec
+	chown root.root -R $(shell pwd)/SPECS
+	mkdir -p $(RPMBUILD_ROOT)/SOURCES
 
-deps:
-	spectool -g -R SPECS/openjfx.spec
+deps: setup
+	spectool -C $(RPMBUILD_ROOT)/SOURCES -g SPECS/openjfx.spec
 	
 info:
 	# os
 	@cat /etc/redhat-release
 	@uname -a && echo
+	# qmake
+	@readlink -f `which qmake`
+	@qmake --version && echo
 	# cmake
-	@which cmake
+	@readlink -f `which cmake`
 	@cmake --version && echo
 	# java
 	@readlink -f `which java`

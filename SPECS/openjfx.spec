@@ -15,7 +15,7 @@ BuildRequires: java-1.8.0-openjdk java-1.8.0-openjdk-devel mercurial bison flex 
 BuildRequires: libpng12-devel libjpeg-devel libxml2-devel libxslt-devel systemd-devel glib2-devel 
 BuildRequires: gtk2-devel libXtst-devel pango-devel freetype-devel alsa-lib-devel glib2-devel 
 BuildRequires: qt-devel gstreamer-devel perl perl-version perl-Digest perl-Digest-MD5 ruby gcc-c++
-BuildRequires: perl-JSON-PP
+BuildRequires: perl-JSON-PP ant
 Requires:      java-1.8.0-openjdk
 
 %description
@@ -35,7 +35,7 @@ rpm -q %{name} && echo "A version already exists, remove before proceding"
 # check for gradle
 chmod -R +x %{_builddir}
 [ -d %{buildroot} ] && chmod -R +x %{buildroot}
-%setup 
+%setup -b 0 -n rt-%{openjfx_version}
 
 %define gradle_properties gradle.properties
 echo "COMPILE_WEBKIT = false" >> %{gradle_properties}
@@ -45,18 +45,18 @@ echo "BUILD_SRC_ZIP = true" >> %{gradle_properties}
 echo "libav" = "true" >> %{gradle_properties}
 
 %build
-%define qmake_symlink %{_builddir}/bin/qmake
 export JAVA_HOME="/usr/lib/jvm/%{openjdk8_version}"
 export CXXFLAGS="$CXXFLAGS -fPIC"
 export CFLAGS="$CFLAGS -fPIC"
-mkdir -p %{_builddir}/bin
-[[ -f %{qmake_symlink} ]] || ln -s /usr/bin/qmake-qt4 %{qmake_symlink}
-# add test targets
 gradle
+gradle :base:test
+gradle zips
 
 %install
 %global sdkdir build/sdk
 mkdir -p build/sdk
+tar cf %{_topdir}/%{openjfx_version}_test_reports.tar.gz %{_builddir}/rt-%{openjfx_version}/modules/base/build/reports
+tar cf %{_topdir}/%{openjfx_version}_test_results.tar.gz %{_builddir}/rt-%{openjfx_version}/modules/base/build/test-results
 chmod -R +x %{sdkdir}
 mkdir -p %{openjdk8_install_dir}/{lib,bin,man/man1,jre/lib/ext}
 %ifarch %{ix86}
