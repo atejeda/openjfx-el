@@ -35,14 +35,14 @@ rpm -q %{name} && echo "A version already exists, remove before proceding"
 # check for gradle
 chmod -R +x %{_builddir}
 [ -d %{buildroot} ] && chmod -R +x %{buildroot}
-%setup -b0 -q -n rt-%{openjfx_version}
+%setup -q -n rt-%{openjfx_version}
 
 %define gradle_properties gradle.properties
 echo "COMPILE_WEBKIT = true" >> %{gradle_properties}
-echo "COMPILE_MEDIA = false" >> %{gradle_properties}
+echo "COMPILE_MEDIA = true" >> %{gradle_properties}
 echo "BUILD_JAVADOC = true" >> %{gradle_properties}
 echo "BUILD_SRC_ZIP = true" >> %{gradle_properties}
-echo "libav" = "true" >> %{gradle_properties}
+#echo "libav = true" >> %{gradle_properties}
 
 %build
 export JAVA_HOME="/usr/lib/jvm/%{openjdk8_version}"

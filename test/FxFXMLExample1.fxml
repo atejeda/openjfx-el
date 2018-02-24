@@ -1,6 +1,4 @@
 <!-- taken from https://examples.javacodegeeks.com/desktop-java/javafx/fxml/javafx-fxml-tutorial/ -->
-<?xml version="1.0" encoding="UTF-8"?>
-<?language JavaScript?>
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>

@@ -20,3 +20,5 @@ RUN wget http://services.gradle.org/distributions/gradle-1.8-bin.zip && \
     unzip gradle-1.8-bin.zip -d /opt && \
     ln -s /opt/gradle-1.8/bin/gradle /usr/bin/ && \
     rm -f gradle-1.8-bin.zip
+RUN yum install -y http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm
+RUN yum install -y ffmpeg ffmpeg-devel
