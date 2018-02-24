@@ -1,3 +1,5 @@
+// taken from https://docs.oracle.com/javafx/2/get_started/hello_world.htm
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
